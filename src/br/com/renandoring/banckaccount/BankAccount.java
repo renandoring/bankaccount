@@ -1,11 +1,14 @@
 package br.com.renandoring.banckaccount;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BankAccount {
-    String clienteName = "Renan Doring";
-    String accountType = "Corrente";
-    private double accountNumber = 5555.00;
-    private double accountBalance = 50000.00;
+    String clienteName;
+    String accountType;
+    private double accountNumber = 0;
+    private double accountBalance = 0;
+    private String myId;
     String enterValue = "";
 
     public double getAccountBalance() {
@@ -16,19 +19,71 @@ public class BankAccount {
         return accountNumber;
     }
 
-    public void clientData() {
+    public String getClienteName() {
+        return clienteName;
+    }
 
-        System.out.println("**************************************************\n" +
-                "Initial data of client: \n\n" +
-                "Name: " + "              " + clienteName + "\n" +
-                "Account Type: " + "      " + accountType + "\n" +
-                "Account Balance:    R$ " + getAccountBalance() + "\n" +
-                "Account Number:     " + getAccountNumber() + "\n" +
-                "**************************************************\n");
+    public String getAccountType() {
+        return accountType;
+    }
 
+    public String getEnterValue() {
+        return enterValue;
+    }
+
+    public String getMyId() {
+        return myId;
+    }
+
+    public void setMyId(String myId) {
+        this.myId = myId;
+    }
+
+    public BankAccount(String clienteName, String accountType, double accountNumber, double accountBalance, String myId) {
+        this.clienteName = clienteName;
+        this.accountType = accountType;
+        this.accountNumber = accountNumber;
+        this.accountBalance = accountBalance;
+        this.myId = myId;
+    }
+
+    public void continueForClientData(ArrayList<BankAccount> accounts) throws Exception {
+        Scanner choiceInput = new Scanner(System.in);
+        String choiceMyid = choiceInput.nextLine();
+
+        boolean found = false;
+        BankAccount selectedAccount = null;
+
+        for (BankAccount account : accounts) {
+            if (choiceMyid.equals(account.getMyId())) {
+                found = true;
+                selectedAccount = account;
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("You chose to continue" + " " + choiceMyid);
+            System.out.println(selectedAccount.toString());
+            boolean shouldFinish = selectedAccount.clientData();
+            choiceInput.close();
+
+            if (shouldFinish) {
+                return;
+            }
+
+        } else {
+            System.out.println("Invalid choice");
+            choiceInput.close();
+            throw new Exception("Escolha inválida - encerrando programa");
+        }
+    }
+
+    public boolean clientData() {
         Scanner input = new Scanner(System.in); //Scanner não entra no looping
+        String enterValue = "";
 
-        while (!enterValue.equals("4")) {
+        while (true) {
             System.out.println("\nOperations \n");
             System.out.println("Please choice a operation: \n\n" +
                     "1 - Check balance\n" +
@@ -39,14 +94,14 @@ public class BankAccount {
 
             switch (enterValue) {
                 case "1":
-                    System.out.printf("The actual balance is R$: %.2f\n", accountBalance);
+                    System.out.printf("The actual balance is R$: %.2f\n", getAccountBalance());
                     break;
 
                 case "2":
                     System.out.println("Enter the amount you want to deposit");
                     double depositValue = input.nextDouble();
                     if (depositValue > 0) {
-                        double actualBalance = accountBalance + depositValue;
+                        double actualBalance = getAccountBalance() + depositValue;
                         accountBalance = actualBalance;
                         System.out.printf("The actual balance is R$: %.2f\n", actualBalance);
                     }
@@ -66,13 +121,22 @@ public class BankAccount {
 
                 case "4":
                     System.out.println("Finish");
-                    break;
+                    input.close();
+                    return true; //Get out of method
 
                 default:
                     System.out.println("Enter the valid number");
             }
         }
-        input.close();
-        System.out.println("Program finished!");
+    }
+
+    public String toString() {
+        return "**************************************************" +
+                "\nInitial data of client: \n\n" +
+                "Name: " + "              " + getClienteName() + "\n" +
+                "Account Type: " + "      " + getAccountType() + "\n" +
+                "Account Balance:    R$ " + getAccountBalance() + "\n" +
+                "Account Number:     " + getAccountNumber() + "\n" +
+                "**************************************************\n";
     }
 }
