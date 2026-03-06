@@ -1,0 +1,50 @@
+[
+  {
+    "ClienteName": "Satoru Gojo",
+    "AccountType": "Corrente",
+    "AccountNumber": 220.09,
+    "AccountBalance": 50000.0,
+    "MyId": "3",
+    "EnterValue": ""
+  },
+  {
+    "ClienteName": "Yuji Itadori",
+    "AccountType": "Poupança",
+    "AccountNumber": 1233.02,
+    "AccountBalance": 1000.0,
+    "MyId": "2",
+    "EnterValue": ""
+  },
+  {
+    "ClienteName": "Yuta Okkotsu",
+    "AccountType": "Corrente",
+    "AccountNumber": 6548.84,
+    "AccountBalance": 6500.0,
+    "MyId": "4",
+    "EnterValue": ""
+  },
+  {
+    "ClienteName": "Goku",
+    "AccountType": "Corrente",
+    "AccountNumber": 224.09,
+    "AccountBalance": 50400.0,
+    "MyId": "8",
+    "EnterValue": ""
+  },
+  {
+    "ClienteName": "Vegeta",
+    "AccountType": "Poupança",
+    "AccountNumber": 1233.02,
+    "AccountBalance": 1060.0,
+    "MyId": "9",
+    "EnterValue": ""
+  },
+  {
+    "ClienteName": "Gohan",
+    "AccountType": "Corrente",
+    "AccountNumber": 658.84,
+    "AccountBalance": 6580.0,
+    "MyId": "1",
+    "EnterValue": ""
+  }
+]
